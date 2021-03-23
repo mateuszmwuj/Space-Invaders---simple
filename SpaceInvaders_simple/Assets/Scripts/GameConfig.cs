@@ -26,8 +26,4 @@ public class GameConfig : ScriptableObject
     public string failTitleText = "Game Over";
     [SerializeField]
     public Color failTitleTextColor;
-
-    private void OnValidate()
-    {        
-    }
 }
