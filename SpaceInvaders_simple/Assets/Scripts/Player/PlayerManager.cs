@@ -48,12 +48,12 @@ public class PlayerManager : MonoBehaviour
         Init();
     }
 
-    public void Init(int amountOfLives = 3, int amountOfCashedLaserShots = 10)
+    public void Init(int amountOfLives = 3, int amountOfCachedLaserShots = 10)
     {
         this._amountOfLives = amountOfLives;
 
-        _playerShoot.amountOfCashedLaserShots = amountOfCashedLaserShots;
-        _playerShoot.InstantiateLaserShots(amountOfCashedLaserShots);
+        _playerShoot.amountOfCachedLaserShots = amountOfCachedLaserShots;
+        _playerShoot.InstantiateLaserShots(amountOfCachedLaserShots);
 
         _explosionObject.SetActive(false);
     }

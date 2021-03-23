@@ -20,7 +20,7 @@ public class EnemyBasicShip : MonoBehaviour
         {
             explosionObject.SetActive(true);
 
-            EnableShipComponents(false);
+            SetComponentsStateTo(false);
 
             Invoke("DisableShip", 0.5f);
         }
@@ -42,7 +42,7 @@ public class EnemyBasicShip : MonoBehaviour
 
             explosionObject.SetActive(true);
 
-            EnableShipComponents(false);
+            SetComponentsStateTo(false);
 
             Invoke("DisableShip", 0.5f);
         }
@@ -61,7 +61,7 @@ public class EnemyBasicShip : MonoBehaviour
         gameObject.SetActive(false);
     }
     
-    protected void EnableShipComponents(bool enable)
+    protected void SetComponentsStateTo(bool enable)
     {
         spriteRenderer.enabled = enable;
         boxCollider2D.enabled = enable;

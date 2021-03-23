@@ -18,7 +18,7 @@ public class EnemiesContainerManager : MonoBehaviour
     private float _difficultyBaseSideValue = 0.05f;
     private float _difficultyBaseDownValue = 0.005f;
 
-    public int amountOfCashedLaserShots = 0;
+    public int amountOfCachedLaserShots = 0;
 
     [SerializeField]
     private List<EnemyShootingShip> _enemyShootShips = new List<EnemyShootingShip>();
@@ -69,11 +69,11 @@ public class EnemiesContainerManager : MonoBehaviour
 
         foreach (EnemyShootingShip enemyShootShip in enemyShootShips)
         {
-            if (!enemyShootShip.gameObject.activeInHierarchy)
+            if (enemyShootShip.gameObject.activeInHierarchy != true)
             {
                 enemyShootShip.gameObject.SetActive(true);
             }
-            enemyShootShip.enemyShoot.Init(amountOfCashedLaserShots, enemyShootShips.IndexOf(enemyShootShip));
+            enemyShootShip.enemyShoot.Init(amountOfCachedLaserShots, enemyShootShips.IndexOf(enemyShootShip));
         }
     }
 

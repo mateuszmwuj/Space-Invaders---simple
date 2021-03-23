@@ -21,7 +21,7 @@ public class ScoreManager : MonoBehaviour
     private void DecreaseScoreByColumnEnemies(int enemies)
     {
         _currentScore -= enemies * 2;
-        _currentScore = _currentScore <= 0 ? 0 : _currentScore;
+        _currentScore = Mathf.Clamp(_currentScore, 0, _currentScore);
 
         ScoreEvents.ScoreSync(_currentScore);
     }

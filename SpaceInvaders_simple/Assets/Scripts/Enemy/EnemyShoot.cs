@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class EnemyShoot : Shoot
 {
-    public void Init(int amountOfCashedLaserShots, int indexOfShooter = -1)
+    public void Init(int amountOfCachedLaserShots, int indexOfShooter = -1)
     {
-        this.amountOfCashedLaserShots = amountOfCashedLaserShots;
+        this.amountOfCachedLaserShots = amountOfCachedLaserShots;
 
         this.indexOfShooter = indexOfShooter;
 
-        InstantiateLaserShots(this.amountOfCashedLaserShots, indexOfShooter);
+        InstantiateLaserShots(this.amountOfCachedLaserShots, indexOfShooter);
     }
 }

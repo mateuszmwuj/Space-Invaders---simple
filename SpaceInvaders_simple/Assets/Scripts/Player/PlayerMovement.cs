@@ -45,7 +45,6 @@ public class PlayerMovement : MonoBehaviour
         canMoveRight = true;
 
         canMove = true;
-        canMove = true;
     }
 
     // Update is called once per frame

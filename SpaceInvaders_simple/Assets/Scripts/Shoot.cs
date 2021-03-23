@@ -18,7 +18,7 @@ public class Shoot : MonoBehaviour
     protected float timerMax = 2f;
     protected float timerMaxBoost = 1f;
 
-    public int amountOfCashedLaserShots = 0;
+    public int amountOfCachedLaserShots = 0;
     public int indexOfShooter = -1;
 
     private bool _canShoot = true;

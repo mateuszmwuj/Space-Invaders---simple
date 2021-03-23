@@ -7,10 +7,10 @@ public class GameConfig : ScriptableObject
 {
     [Header("Players Parameters")]
     public int amountOfLives = 3;
-    public int amountOfCashedPlayersLaserShots = 10;
+    public int amountOfCachedPlayersLaserShots = 10;
     
     [Header("EnemyShootShip Parameters")]
-    public int amountOfCashedEnemiesLaserShots = 5;
+    public int amountOfCachedEnemiesLaserShots = 5;
     public float enemyShootTimerMin = 4f;
     public float enemyShootTimerMax = 7f;
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : Singleton
+public class SoundManager : MonoBehaviour
 {
     public AudioSource audioSource;
 
@@ -13,8 +13,7 @@ public class SoundManager : Singleton
 
     public AudioClip musicClip;
 
-    // Start is called before the first frame update
-    private static SoundManager instance = null;
+    protected static SoundManager instance = null;
 
     // Game Instance Singleton
     public static SoundManager Instance

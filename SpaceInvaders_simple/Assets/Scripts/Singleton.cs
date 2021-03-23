@@ -1,20 +1,29 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Singleton : MonoBehaviour
 {
-    protected static Singleton _instance;
+    // Start is called before the first frame update
+    protected static Singleton instance = null;
 
-    void Awake()
+    // Game Instance Singleton
+    public static Singleton Instance
     {
-        if (_instance == null)
+        get
         {
-            _instance = this;
-            DontDestroyOnLoad(this.gameObject);
-            //Rest of your Awake code
+            return instance;
         }
-        else
+    }
+
+    private void Awake()
+    {
+        // if the singleton hasn't been initialized yet
+        if (instance != null && instance != this)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
+
+        instance = this;
+        DontDestroyOnLoad(this.gameObject);
     }
 }

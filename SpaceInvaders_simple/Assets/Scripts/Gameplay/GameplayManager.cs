@@ -42,9 +42,9 @@ public class GameplayManager : MonoBehaviour
     {
         _playerStateEnd = false;
 
-        _playerManager.Init(_gameConfig.amountOfLives, _gameConfig.amountOfCashedPlayersLaserShots);
+        _playerManager.Init(_gameConfig.amountOfLives, _gameConfig.amountOfCachedPlayersLaserShots);
 
-        _enemiesController.enemiesContainer.amountOfCashedLaserShots = _gameConfig.amountOfCashedEnemiesLaserShots;
+        _enemiesController.enemiesContainer.amountOfCachedLaserShots = _gameConfig.amountOfCachedEnemiesLaserShots;
         _enemiesController.Init(_gameConfig.enemyShootTimerMin, _gameConfig.enemyShootTimerMax);
 
         _enemiesController.enemiesContainer.Init();
