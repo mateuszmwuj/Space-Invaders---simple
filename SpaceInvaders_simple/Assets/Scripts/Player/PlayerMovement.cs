@@ -53,31 +53,32 @@ public class PlayerMovement : MonoBehaviour
     {
         if (canMove)
         {
-            if (Input.GetKey(KeyCode.LeftArrow))
-                MoveShipLeft(true);
-            else if (Input.GetKey(KeyCode.RightArrow))
-                MoveShipRight(true);
+            MoveShipByButtons();
 
-            MoveShipLeft();
-            MoveShipRight();
+            MovementByKeyboard();
         }
     }
 
-    public void MoveShipLeft(bool byKeyboard = false)
+    public void MoveShipByButtons()
     {
         _rigidbody2D.velocity = new Vector2(CrossPlatformInputManager.GetAxis("Horizontal") * movementSpeed, 0f);
-        if (canMoveLeft && byKeyboard)
-            transform.position -= new Vector3(Time.deltaTime * movementSpeed, 0, 0);
     }
-    public void MoveShipRight(bool byKeyboard = false)
+
+    private void MovementByKeyboard()
     {
-        _rigidbody2D.velocity = new Vector2(CrossPlatformInputManager.GetAxis("Horizontal") * movementSpeed, 0f);
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+        {
+            if (canMoveLeft == true)
+                transform.position -= new Vector3(Time.deltaTime * movementSpeed, 0, 0);
 
-        if (canMoveRight && byKeyboard)
-            transform.position += new Vector3(Time.deltaTime * movementSpeed, 0, 0);
+        }
+        else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        {
+            if (canMoveRight == true)
+                transform.position += new Vector3(Time.deltaTime * movementSpeed, 0, 0);
+        }
     }
-
-    public void SetMovementActive(bool active)
+        public void SetMovementActive(bool active)
     {
         canMove = active;
     }
