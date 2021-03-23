@@ -165,12 +165,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ae3876c02df814792d12e01a684068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesController: {fileID: 5650293118291154187}
-  playerManager: {fileID: 5625340572207281873}
-  popupManager: {fileID: 9076119030052839898}
-  scoreManager: {fileID: 9173898615585327865}
-  playerPrefsManager: {fileID: 5708647802423985300}
-  gameConfig: {fileID: 11400000, guid: e068c8bef8425d146ac488ef2fef923b, type: 2}
+  _enemiesController: {fileID: 5650293118291154187}
+  _playerManager: {fileID: 5625340572207281873}
+  _popupManager: {fileID: 9076119030052839898}
+  _fadeMask: {fileID: 0}
+  _scoreManager: {fileID: 9173898615585327865}
+  _playerPrefsManager: {fileID: 5708647802423985300}
+  _gameConfig: {fileID: 11400000, guid: e068c8bef8425d146ac488ef2fef923b, type: 2}
 --- !u!114 &5708647802423985300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -467,8 +468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d9aa011be1c9c4cbc9c7422e869cdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesContainer: {fileID: 6633235594421552572}
-  shootLaserAudioClip: {fileID: 8300000, guid: d85e5246220fa29429f51cbf5345bb6d, type: 3}
+  _enemiesContainer: {fileID: 6633235594421552572}
 --- !u!1001 &414511837460861330
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -668,6 +668,16 @@ PrefabInstance:
       propertyPath: shootLaserAudioClip
       value: 
       objectReference: {fileID: 8300000, guid: 05814350ee4123b4896df7c0b77f4ed3, type: 3}
+    - target: {fileID: 7796083536677390126, guid: c08eb59859ada33408006f0b8adeba34,
+        type: 3}
+      propertyPath: _explosionObject
+      value: 
+      objectReference: {fileID: 1632341717120857045}
+    - target: {fileID: 7861395128701239245, guid: c08eb59859ada33408006f0b8adeba34,
+        type: 3}
+      propertyPath: _rigidbody2D
+      value: 
+      objectReference: {fileID: 2459099373459667809}
     - target: {fileID: 7861395128701239280, guid: c08eb59859ada33408006f0b8adeba34,
         type: 3}
       propertyPath: m_Name
@@ -753,6 +763,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f0252ad768e0d0429f34e8289735fad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &2459099373459667809 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 262032030, guid: c08eb59859ada33408006f0b8adeba34,
+    type: 3}
+  m_PrefabInstance: {fileID: 2459099373249540607}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1632341717120857045 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3785073165003555370, guid: c08eb59859ada33408006f0b8adeba34,
+    type: 3}
+  m_PrefabInstance: {fileID: 2459099373249540607}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3818099680591780145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -839,6 +861,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: UpWall
       objectReference: {fileID: 0}
+    - target: {fileID: 902488952, guid: 157fa7d59c9c3124b8c73d708c06d60a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.59
+      objectReference: {fileID: 0}
     - target: {fileID: 101393175110968208, guid: 157fa7d59c9c3124b8c73d708c06d60a,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -912,15 +938,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4989854902996693541}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &5708647802415532692 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 722465412307040433, guid: 157fa7d59c9c3124b8c73d708c06d60a,
-    type: 3}
-  m_PrefabInstance: {fileID: 4989854902996693541}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5708647801974038297 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 722465412148751676, guid: 157fa7d59c9c3124b8c73d708c06d60a,
+    type: 3}
+  m_PrefabInstance: {fileID: 4989854902996693541}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5708647802415532692 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 722465412307040433, guid: 157fa7d59c9c3124b8c73d708c06d60a,
     type: 3}
   m_PrefabInstance: {fileID: 4989854902996693541}
   m_PrefabAsset: {fileID: 0}
@@ -1064,6 +1090,12 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2979632764059910347, guid: 9f400ad772e48bc40a9aa8821d1e8aa3,
+        type: 3}
+      propertyPath: _endPopupPrefab
+      value: 
+      objectReference: {fileID: 6043722279449147337, guid: d47b5c1514481b6428aebb72d4333f3a,
+        type: 3}
     - target: {fileID: 5373455806611433454, guid: 9f400ad772e48bc40a9aa8821d1e8aa3,
         type: 3}
       propertyPath: m_LocalPosition.x
