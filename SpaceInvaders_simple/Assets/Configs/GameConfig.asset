@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5578a84ada2f8e6498ed79e7c887e578, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
-  amountOfLives: 10
+  amountOfLives: 3
   amountOfCachedPlayersLaserShots: 10
   playerBaseShootingIntensity: 2
-  playerBoostShootingIntensity: 0.1
+  playerBoostShootingIntensity: 1
   amountOfCachedEnemiesLaserShots: 5
   enemyShootTimerMin: 4
   enemyShootTimerMax: 7
