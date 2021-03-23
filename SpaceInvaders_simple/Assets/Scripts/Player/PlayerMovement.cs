@@ -5,7 +5,8 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Rigidbody2D rigidbody2D;
+    [SerializeField]
+    private Rigidbody2D _rigidbody2D;
 
     private int movementSpeed = 5;
     private bool canMoveLeft = true;
@@ -15,11 +16,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("LeftWall"))
+        if (collision.gameObject.CompareTag(TagsData.leftWall))
         {
             canMoveLeft = false;
         }
-        else if (collision.gameObject.CompareTag("RightWall"))
+        else if (collision.gameObject.CompareTag(TagsData.rightWall))
         {
             canMoveRight = false;
         }
@@ -27,11 +28,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("LeftWall"))
+        if (collision.gameObject.CompareTag(TagsData.leftWall))
         {
             canMoveLeft = true;
         }
-        else if (collision.gameObject.CompareTag("RightWall"))
+        else if (collision.gameObject.CompareTag(TagsData.rightWall))
         {
             canMoveRight = true;
         }
@@ -40,8 +41,6 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
-
         canMoveLeft = true;
         canMoveRight = true;
 
@@ -66,16 +65,16 @@ public class PlayerMovement : MonoBehaviour
 
     public void MoveShipLeft(bool byKeyboard = false)
     {
-        rigidbody2D.velocity = new Vector2(CrossPlatformInputManager.GetAxis("Horizontal") * movementSpeed, 0f);
+        _rigidbody2D.velocity = new Vector2(CrossPlatformInputManager.GetAxis("Horizontal") * movementSpeed, 0f);
         if (canMoveLeft && byKeyboard)
-            transform.position -= new Vector3(CrossPlatformInputManager.GetAxis("Horizontal") * movementSpeed, 0, 0);
+            transform.position -= new Vector3(Time.deltaTime * movementSpeed, 0, 0);
     }
     public void MoveShipRight(bool byKeyboard = false)
     {
-        rigidbody2D.velocity = new Vector2(CrossPlatformInputManager.GetAxis("Horizontal") * movementSpeed, 0f);
+        _rigidbody2D.velocity = new Vector2(CrossPlatformInputManager.GetAxis("Horizontal") * movementSpeed, 0f);
 
         if (canMoveRight && byKeyboard)
-            transform.position += new Vector3(CrossPlatformInputManager.GetAxis("Horizontal") * movementSpeed, 0, 0);
+            transform.position += new Vector3(Time.deltaTime * movementSpeed, 0, 0);
     }
 
     public void SetMovementActive(bool active)

@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class EnemyShoot : Shoot
 {
-    // Start is called before the first frame update
-    new void Start()
-    {
-    }
-
     public void Init(int amountOfCashedLaserShots, int indexOfShooter = -1)
     {
         this.amountOfCashedLaserShots = amountOfCashedLaserShots;
@@ -16,10 +11,5 @@ public class EnemyShoot : Shoot
         this.indexOfShooter = indexOfShooter;
 
         InstantiateLaserShots(this.amountOfCashedLaserShots, indexOfShooter);
-    }
-
-    new void Update()
-    {
-        base.Update();
     }
 }

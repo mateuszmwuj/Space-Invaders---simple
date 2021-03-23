@@ -5,16 +5,16 @@ using UnityEngine;
 public class PopupManager : MonoBehaviour
 {
     [SerializeField]
-    private EndPopup endPopupPrefab;
-    private EndPopup endPopupObject;
+    private EndPopup _endPopupPrefab;
+    private EndPopup _endPopupObject;
 
     [SerializeField]
-    private Canvas canvas;
+    private Canvas _canvas;
 
     public void OpenEndPopup(string titleText, Color titleTextColor, int score)
     {
-        endPopupObject = Instantiate(endPopupPrefab, canvas.transform);
+        _endPopupObject = Instantiate(_endPopupPrefab, _canvas.transform);
 
-        endPopupObject.Init(titleText, titleTextColor, score);
+        _endPopupObject.Init(titleText, titleTextColor, score);
     }
 }

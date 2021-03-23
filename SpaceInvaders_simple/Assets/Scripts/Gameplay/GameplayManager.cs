@@ -5,24 +5,27 @@ using UnityEngine;
 public class GameplayManager : MonoBehaviour
 {
     [SerializeField]
-    private EnemiesController enemiesController;
+    private EnemiesController _enemiesController;
 
     [SerializeField]
-    private PlayerManager playerManager;
+    private PlayerManager _playerManager;
     
     [SerializeField]
-    private PopupManager popupManager;
-    
-    [SerializeField]
-    private ScoreManager scoreManager;
+    private PopupManager _popupManager;
 
     [SerializeField]
-    private PlayerPrefsManager playerPrefsManager;
+    private GameObject _fadeMask;
 
     [SerializeField]
-    private GameConfig gameConfig;
+    private ScoreManager _scoreManager;
 
-    private bool playerStateEnd = false;
+    [SerializeField]
+    private PlayerPrefsManager _playerPrefsManager;
+
+    [SerializeField]
+    private GameConfig _gameConfig;
+
+    private bool _playerStateEnd = false;
 
     private void OnEnable()
     {
@@ -37,37 +40,41 @@ public class GameplayManager : MonoBehaviour
 
     private void Start()
     {
-        playerStateEnd = false;
+        _playerStateEnd = false;
 
-        playerManager.Init(gameConfig.amountOfLives, gameConfig.amountOfCashedPlayersLaserShots);
+        _playerManager.Init(_gameConfig.amountOfLives, _gameConfig.amountOfCashedPlayersLaserShots);
 
-        enemiesController.enemiesContainer.amountOfCashedLaserShots = gameConfig.amountOfCashedEnemiesLaserShots;
-        enemiesController.Init(gameConfig.enemyShootTimerMin, gameConfig.enemyShootTimerMax);
+        _enemiesController.enemiesContainer.amountOfCashedLaserShots = _gameConfig.amountOfCashedEnemiesLaserShots;
+        _enemiesController.Init(_gameConfig.enemyShootTimerMin, _gameConfig.enemyShootTimerMax);
 
-        enemiesController.enemiesContainer.Init();
+        _enemiesController.enemiesContainer.Init();
     }
     private void PlayerDeath()
     {
-        popupManager.OpenEndPopup(gameConfig.failTitleText, gameConfig.failTitleTextColor, scoreManager.currentScore);
-        
-        enemiesController.StopAll();
+        _fadeMask.SetActive(true);
 
-        if (!playerStateEnd)
+        _popupManager.OpenEndPopup(_gameConfig.failTitleText, _gameConfig.failTitleTextColor, _scoreManager.currentScore);
+        
+        _enemiesController.StopAll();
+
+        if (!_playerStateEnd)
         {
-            playerPrefsManager.UpdatePlayerPrefs(scoreManager.currentScore, gameConfig.amountOfScores);
-            playerStateEnd = true;
+            _playerPrefsManager.UpdatePlayerPrefs(_scoreManager.currentScore, _gameConfig.amountOfScores);
+            _playerStateEnd = true;
         }
     }
     private void PlayerWin()
     {
-        popupManager.OpenEndPopup(gameConfig.winTitleText, gameConfig.winTitleTextColor, scoreManager.currentScore);
+        _fadeMask.SetActive(true);
 
-        enemiesController.StopAll();
+        _popupManager.OpenEndPopup(_gameConfig.winTitleText, _gameConfig.winTitleTextColor, _scoreManager.currentScore);
 
-        if (!playerStateEnd)
+        _enemiesController.StopAll();
+
+        if (!_playerStateEnd)
         {
-            playerPrefsManager.UpdatePlayerPrefs(scoreManager.currentScore, gameConfig.amountOfScores);
-            playerStateEnd = true;
+            _playerPrefsManager.UpdatePlayerPrefs(_scoreManager.currentScore, _gameConfig.amountOfScores);
+            _playerStateEnd = true;
         }
     }
 }

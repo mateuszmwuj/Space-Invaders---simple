@@ -52,7 +52,7 @@ public class LaserShot : MonoBehaviour
 
             SoundManager.Instance.PlayExplosionSound();
 
-            Invoke("DisableGameObject", 0.5f);
+            Invoke(nameof(DisableGameObject), 0.5f);
         }
         else if (collision.gameObject.CompareTag(TagsData.upWall) || collision.gameObject.CompareTag(TagsData.downWall))
         {
@@ -63,7 +63,7 @@ public class LaserShot : MonoBehaviour
             
             SoundManager.Instance.PlayExplosionSound();
 
-            Invoke("DisableGameObject", 0.5f);
+            Invoke(nameof(DisableGameObject), 0.5f);
         }
     }
 

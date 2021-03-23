@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class LivesManager : MonoBehaviour
 {
     [SerializeField]
-    private List<Image> lives = new List<Image>();
-    private int amountOfLives;
+    private List<Image> _lives;
+
+    private int _amountOfLives;
+
     private void OnEnable()
     {
         PlayerLoseLifeEvent.PlayerLoseLife += LoseLife;
@@ -27,28 +29,27 @@ public class LivesManager : MonoBehaviour
 
     public void ResetLives()
     {
-        foreach (Image life in lives)
+        foreach (Image life in _lives)
         {
             life.gameObject.SetActive(true);
         }
 
-        amountOfLives = lives.Count;
+        _amountOfLives = _lives.Count;
     }
 
     private void LoseLife()
     {
-        if (amountOfLives > 0)
+        if (_amountOfLives > 0)
         {
-            lives[amountOfLives - 1].gameObject.SetActive(false);
+            _lives[_amountOfLives - 1].gameObject.SetActive(false);
 
-            amountOfLives--;
+            _amountOfLives--;
         }
-
     }
 
     private void PlayersDeath()
     {
-        foreach (Image life in lives)
+        foreach (Image life in _lives)
         {
             life.gameObject.SetActive(false);
         }

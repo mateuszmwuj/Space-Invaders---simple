@@ -6,15 +6,15 @@ public class EnemiesController : MonoBehaviour
 {
     [SerializeField]
     private EnemiesContainerManager _enemiesContainer;
-    public EnemiesContainerManager enemiesContainer { get { return _enemiesContainer; } }
+    public EnemiesContainerManager enemiesContainer => _enemiesContainer; 
 
-    private List<EnemyShootShip> enemyShootShips;
+    private List<EnemyShootingShip> _enemyShootShips;
 
-    protected float shootTimerCounter = 0f;
-    protected float shootTimerDiff = 0f;
-    protected float shootTimerMin = 4f;
-    protected float shootTimerMax = 7f;
-    protected float shootTimerRandomMax = 2f;
+    private float shootTimerCounter = 0f;
+    private float shootTimerDiff = 0f;
+    private float shootTimerMin = 4f;
+    private float shootTimerMax = 7f;
+    private float shootTimerRandomMax = 2f;
 
     private float difficultyValue = 0.0f;
     private float difficultyBaseValue = 0.01f;
@@ -30,7 +30,7 @@ public class EnemiesController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemyShootShips = _enemiesContainer.enemyShootShips;
+        _enemyShootShips = _enemiesContainer.enemyShootShips;
 
         shootTimerDiff = shootTimerMax;
     }
@@ -57,12 +57,11 @@ public class EnemiesController : MonoBehaviour
 
     public void RandomEnemyShoot()
     {
-        //foreach (EnemyShootShip enemyShootShip in enemyShootShips)
-        EnemyShootShip enemyShootShip = enemyShootShips[Random.Range(0, enemyShootShips.Count)];
+        EnemyShootingShip enemyShootShip = _enemyShootShips[Random.Range(0, _enemyShootShips.Count)];
+
         if (enemyShootShip.gameObject.activeInHierarchy && enemyShootShip.enemyShoot.canShoot)
         {
-            enemyShootShip.enemyShoot.ShootLaser(SpaceShipsTypes.Enemy, enemyShootShips.IndexOf(enemyShootShip));
-            //break;
+            enemyShootShip.enemyShoot.ShootLaser(SpaceShipsTypes.Enemy, _enemyShootShips.IndexOf(enemyShootShip));
         }
     }
 

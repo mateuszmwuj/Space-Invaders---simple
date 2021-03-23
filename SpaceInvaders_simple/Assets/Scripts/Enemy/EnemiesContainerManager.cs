@@ -4,33 +4,32 @@ using UnityEngine;
 
 public class EnemiesContainerManager : MonoBehaviour
 {
-    private float horizontalSpeed;
-    private Vector3 startPosition;
+    private float _horizontalContainerSpeed;
 
-    private bool moveLeft = true;
-    private bool moveRight = false;
-    private bool moveDown = false;
+    private bool _moveLeft = true;
+    private bool _moveRight = false;
+    private bool _moveDown = false;
 
-    private int enemiesRow = 5;
-    private int enemiesColumn = 5;
+    private int _enemiesRow = 5;
+    private int _enemiesColumn = 5;
 
-    private float difficultyValueSide = 0.0f;
-    private float difficultyValueDown = 0.0f;
-    private float difficultyBaseSideValue = 0.05f;
-    private float difficultyBaseDownValue = 0.005f;
+    private float _difficultyValueSide = 0.0f;
+    private float _difficultyValueDown = 0.0f;
+    private float _difficultyBaseSideValue = 0.05f;
+    private float _difficultyBaseDownValue = 0.005f;
 
     public int amountOfCashedLaserShots = 0;
 
     [SerializeField]
-    private List<EnemyShootShip> _enemyShootShips = new List<EnemyShootShip>();
-    public List<EnemyShootShip> enemyShootShips { get { return _enemyShootShips; } }
+    private List<EnemyShootingShip> _enemyShootShips = new List<EnemyShootingShip>();
+    public List<EnemyShootingShip> enemyShootShips => _enemyShootShips;
 
     [SerializeField]
     private List<EnemyBasicShip> _enemyShips = new List<EnemyBasicShip>();
-    public List<EnemyBasicShip> enemyShips { get { return _enemyShips; } }
+    public List<EnemyBasicShip> enemyShips => _enemyShips; 
 
     private bool _enableToMove = true;
-    public bool enableToMove { get { return _enableToMove; } }
+    public bool enableToMove => _enableToMove;
 
     public int amountOfActiveShips = 0;
 
@@ -39,7 +38,6 @@ public class EnemiesContainerManager : MonoBehaviour
         EnemyMovementTriggerEvents.LeftWallEnter += MoveRightHandler;
         EnemyMovementTriggerEvents.RightWallEnter += MoveLeftHandler;
         EnemyDiesEvents.EnemyDies += EnemyDies;
-        EnemyDiesEvents.EnemyDiesWithInfo += EnemyDiesWithInfo;
         ScoreEvents.PlayerHitByEnemiesLaser += PlayerHitByEnemiesLaser;
     }
     private void OnDisable()
@@ -47,14 +45,12 @@ public class EnemiesContainerManager : MonoBehaviour
         EnemyMovementTriggerEvents.LeftWallEnter -= MoveRightHandler;
         EnemyMovementTriggerEvents.RightWallEnter -= MoveLeftHandler;
         EnemyDiesEvents.EnemyDies -= EnemyDies;
-        EnemyDiesEvents.EnemyDiesWithInfo -= EnemyDiesWithInfo;
         ScoreEvents.PlayerHitByEnemiesLaser -= PlayerHitByEnemiesLaser;
     }
     // Start is called before the first frame update
     void Start()
     {
-        horizontalSpeed = 1f;
-        startPosition = transform.position;
+        _horizontalContainerSpeed = 1f;
     }
 
     // Update is called once per frame
@@ -69,11 +65,9 @@ public class EnemiesContainerManager : MonoBehaviour
 
     public void Init()
     {
-        //transform.position = startPosition;
-
         amountOfActiveShips = _enemyShips.Count;
 
-        foreach (EnemyShootShip enemyShootShip in enemyShootShips)
+        foreach (EnemyShootingShip enemyShootShip in enemyShootShips)
         {
             if (!enemyShootShip.gameObject.activeInHierarchy)
             {
@@ -81,61 +75,55 @@ public class EnemiesContainerManager : MonoBehaviour
             }
             enemyShootShip.enemyShoot.Init(amountOfCashedLaserShots, enemyShootShips.IndexOf(enemyShootShip));
         }
-        //foreach (EnemyBasicShip enemyShootShip in _enemyShips)
-        //{
-        //    if()
-        //    _enemyShootShips.Add(enemyShootShip);
-        //}
     }
 
     private void MoveContainerLeft()
     {
-        if (moveLeft)
+        if (_moveLeft)
         {
-            transform.localPosition -= new Vector3(Time.deltaTime * (horizontalSpeed + difficultyValueSide), 0, 0);
+            transform.localPosition -= new Vector3(Time.deltaTime * (_horizontalContainerSpeed + _difficultyValueSide), 0, 0);
 
-            if (moveDown)
+            if (_moveDown)
             {
                 MoveContainerDown();
 
-                moveDown = false;
+                _moveDown = false;
             }
         }
-        //transform.localPosition = startPosition - new Vector3(Mathf.Sin(Time.time * horizontalSpeed) / 2f, 0, 0);
     }
     private void MoveContainerRight()
     {
-        if (moveRight)
+        if (_moveRight)
         {
-            transform.localPosition += new Vector3(Time.deltaTime * (horizontalSpeed + difficultyValueSide), 0, 0);
+            transform.localPosition += new Vector3(Time.deltaTime * (_horizontalContainerSpeed + _difficultyValueSide), 0, 0);
 
-            if (moveDown)
+            if (_moveDown)
             {
                 MoveContainerDown();
 
-                moveDown = false;
+                _moveDown = false;
             }
         }
     }
 
     private void MoveContainerDown()
     {
-        transform.localPosition -= new Vector3(0, 0.1f + difficultyValueDown, 0);
+        transform.localPosition -= new Vector3(0, 0.1f + _difficultyValueDown, 0);
     }
 
     private void MoveLeftHandler()
     {
-        moveLeft = true;
-        moveRight = false;
+        _moveLeft = true;
+        _moveRight = false;
 
-        moveDown = true;
+        _moveDown = true;
     }
     private void MoveRightHandler()
     {
-        moveLeft = false;
-        moveRight = true;
+        _moveLeft = false;
+        _moveRight = true;
 
-        moveDown = true;
+        _moveDown = true;
     }
 
     public void ShipsEnableToMove(bool enable)
@@ -153,16 +141,10 @@ public class EnemiesContainerManager : MonoBehaviour
         }
         else
         {
-            difficultyValueSide += difficultyBaseSideValue;
-            difficultyValueDown += difficultyBaseDownValue;
+            _difficultyValueSide += _difficultyBaseSideValue;
+            _difficultyValueDown += _difficultyBaseDownValue;
         }
     }
-
-    private void EnemyDiesWithInfo(EnemyBasicShip enemyBasicShip)
-    {
-        
-    }
-
 
     private int CalculateAmountOfEnemiesInColumn(EnemyBasicShip enemyBasicShip)
     {
@@ -173,17 +155,17 @@ public class EnemiesContainerManager : MonoBehaviour
 
         if (indexOfShip > 0)
         {
-            if (indexOfShip < enemiesRow)
+            if (indexOfShip < _enemiesRow)
             {
                 shipRow = indexOfShip;
             }
             else
             {
-                int modulo = indexOfShip / enemiesRow;
-                shipRow = modulo * enemiesRow;
+                int modulo = indexOfShip / _enemiesRow;
+                shipRow = modulo * _enemiesRow;
             }
 
-            for (int numberOfEnemies = 0; numberOfEnemies < enemiesColumn; numberOfEnemies++)
+            for (int numberOfEnemies = 0; numberOfEnemies < _enemiesColumn; numberOfEnemies++)
             {
                 if (enemyShips[shipRow + shipRow * numberOfEnemies].gameObject.activeInHierarchy)
                 {
@@ -191,7 +173,6 @@ public class EnemiesContainerManager : MonoBehaviour
                 }
             }
         }
-
         return counter;
     }
 
@@ -206,7 +187,6 @@ public class EnemiesContainerManager : MonoBehaviour
                 counter++;
             }
         }
-
         return counter;
     }
 
@@ -216,7 +196,7 @@ public class EnemiesContainerManager : MonoBehaviour
 
         if (indexOfEnemy > 0)
         {
-            for (int numberOfEnemies = 0; numberOfEnemies < enemiesColumn; numberOfEnemies++)
+            for (int numberOfEnemies = 0; numberOfEnemies < _enemiesColumn; numberOfEnemies++)
             {
                 if (enemyShips[indexOfEnemy + indexOfEnemy * numberOfEnemies].gameObject.activeInHierarchy)
                 {

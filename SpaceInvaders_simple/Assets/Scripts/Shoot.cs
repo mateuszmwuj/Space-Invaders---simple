@@ -12,7 +12,7 @@ public class Shoot : MonoBehaviour
     protected GameObject laserShotsContainer;
 
     public List<LaserShot> laserShotsList = new List<LaserShot>();
-    private LaserShot laserShotObject;
+    private LaserShot _laserShotObject;
 
     protected float timerCounter = 5f;
     protected float timerMax = 2f;
@@ -22,9 +22,9 @@ public class Shoot : MonoBehaviour
     public int indexOfShooter = -1;
 
     private bool _canShoot = true;
-    public bool canShoot { get { return _canShoot; } }
+    public bool canShoot => _canShoot;
 
-    private bool shootingEnabled = true;
+    private bool _shootingEnabled = true;
 
     private void OnEnable()
     {
@@ -43,7 +43,7 @@ public class Shoot : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-        if (shootingEnabled)
+        if (_shootingEnabled)
             LaserShotTimerChecker();
 
         if (Input.GetKey(KeyCode.R))
@@ -58,8 +58,6 @@ public class Shoot : MonoBehaviour
 
         if (timerCounter >= timerMax || timerCounter >= timerMaxBoost)
         {
-            //InstantiateLaserShot();
-
             timerCounter = 0;
 
             _canShoot = true;
@@ -67,13 +65,13 @@ public class Shoot : MonoBehaviour
     }
     protected void InstantiateLaserShot(bool nowShoot = false, int indexOfShooter = -1)
     {
-        laserShotObject = Instantiate(laserShotPrefab, spawnerPrefab.transform.position, Quaternion.identity, laserShotsContainer.transform);
+        _laserShotObject = Instantiate(laserShotPrefab, spawnerPrefab.transform.position, Quaternion.identity, laserShotsContainer.transform);
         
-        laserShotObject.indexOfShooter = indexOfShooter;
+        _laserShotObject.indexOfShooter = indexOfShooter;
 
-        laserShotsList.Add(laserShotObject);
+        laserShotsList.Add(_laserShotObject);
 
-        laserShotObject.gameObject.SetActive(nowShoot);
+        _laserShotObject.gameObject.SetActive(nowShoot);
 
         _canShoot = !nowShoot;
     }
@@ -102,41 +100,30 @@ public class Shoot : MonoBehaviour
     }
     public void ShootLaser(SpaceShipsTypes spaceShipsType, int indexOfEnemy = -1)
     {
-        if (_canShoot && laserShotObject.gameObject.activeInHierarchy == false)
+        if (_canShoot && _laserShotObject.gameObject.activeInHierarchy == false)
         {
-            laserShotObject = GetFirstAvailableLaserShot();
+            _laserShotObject = GetFirstAvailableLaserShot();
 
-            if (laserShotObject != null)
+            if (_laserShotObject != null)
             {
-                laserShotObject.transform.position = spawnerPrefab.transform.position;
-                laserShotObject.gameObject.SetActive(true);
+                _laserShotObject.transform.position = spawnerPrefab.transform.position;
+                _laserShotObject.gameObject.SetActive(true);
 
                 SoundManager.Instance.PlayRandomShootSoundByEnum(spaceShipsType);
 
                 _canShoot = false;
             }
-            //foreach (LaserShot laserShot in laserShotsList)
-            //{
-            //    if (laserShot.gameObject.activeInHierarchy == true)
-            //    {
-            //        laserShot.gameObject.SetActive(true);
-            //    }
-            //    else
-            //    {
-            //        //InstantiateLaserShot(true);
-            //    }
-            //}
         }
     }
 
     public void SetActiveShoot(bool active)
     {
-        shootingEnabled = active;
+        _shootingEnabled = active;
     }
 
     private void StopShooting()
     {
-        shootingEnabled = false;
+        _shootingEnabled = false;
         _canShoot = false;
     }
 

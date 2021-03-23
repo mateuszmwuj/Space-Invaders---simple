@@ -5,7 +5,7 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     private int _currentScore;
-    public int currentScore { get { return _currentScore; } }
+    public int currentScore => _currentScore;
 
     private void OnEnable()
     {

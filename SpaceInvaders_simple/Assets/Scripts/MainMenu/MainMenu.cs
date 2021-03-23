@@ -5,9 +5,9 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField]
-    private Button startButton;
+    private Button _startButton;
     [SerializeField]
-    private Button statsButton;
+    private Button _statsButton;
 
     public void OpenGameplayScene()
     {

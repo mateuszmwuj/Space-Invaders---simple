@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyLaserShot : LaserShot
 {
-    // Start is called before the first frame update
     void Awake()
     {
         direction = -1;

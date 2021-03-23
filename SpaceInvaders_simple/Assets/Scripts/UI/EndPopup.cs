@@ -7,17 +7,17 @@ using UnityEngine.SceneManagement;
 public class EndPopup : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI titleText;
+    private TextMeshProUGUI _titleText;
     
     [SerializeField]
-    private TextMeshProUGUI scoreAmountText;
+    private TextMeshProUGUI _scoreAmountText;
 
     public void Init(string titleText, Color titleTextColor, int score)
     {
-        this.titleText.text = titleText;
-        this.titleText.color = titleTextColor;
+        this._titleText.text = titleText;
+        this._titleText.color = titleTextColor;
 
-        this.scoreAmountText.text = score.ToString();
+        this._scoreAmountText.text = score.ToString();
     }
 
     public void RestartGame()

@@ -7,28 +7,28 @@ using TMPro;
 public class ScoreboardManager : MonoBehaviour
 {
     [SerializeField]
-    private List<TextMeshProUGUI> scoreTexts;
+    private List<TextMeshProUGUI> _scoreTexts;
 
     [SerializeField]
-    private PlayerPrefsManager playerPrefsManager;
+    private PlayerPrefsManager _playerPrefsManager;
 
     [SerializeField]
-    private GameConfig gameConfig;
+    private GameConfig _gameConfig;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerPrefsManager.Init(gameConfig.amountOfScores);
+        _playerPrefsManager.Init(_gameConfig.amountOfScores);
         UpdateScoreboard();
     }
 
     private void UpdateScoreboard()
     {
-        List<int> scoreboardScores = playerPrefsManager.ReadPlayerPrefs(gameConfig.amountOfScores);
+        List<int> scoreboardScores = _playerPrefsManager.ReadPlayerPrefs(_gameConfig.amountOfScores);
 
-        for (int indexOfScore = 1; indexOfScore <= scoreTexts.Count; indexOfScore++)
+        for (int indexOfScore = 1; indexOfScore <= _scoreTexts.Count; indexOfScore++)
         {
-            scoreTexts[indexOfScore - 1].text = "Player " + indexOfScore + ": " + scoreboardScores[indexOfScore - 1].ToString();
+            _scoreTexts[indexOfScore - 1].text = "Player " + indexOfScore + ": " + scoreboardScores[indexOfScore - 1].ToString();
         }
     }
 

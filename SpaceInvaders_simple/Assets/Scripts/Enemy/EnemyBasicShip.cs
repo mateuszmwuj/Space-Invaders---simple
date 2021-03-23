@@ -23,8 +23,6 @@ public class EnemyBasicShip : MonoBehaviour
             EnableShipComponents(false);
 
             Invoke("DisableShip", 0.5f);
-
-            EnemyDiesEvents.EnemyDiesWithInfo(this);
         }
         else if (collision.CompareTag(TagsData.leftWall))
         {
@@ -49,7 +47,6 @@ public class EnemyBasicShip : MonoBehaviour
             Invoke("DisableShip", 0.5f);
         }
     }
-
 
     // Start is called before the first frame update
     void Start()

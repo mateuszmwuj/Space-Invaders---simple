@@ -4,23 +4,20 @@ using UnityEngine;
 
 public class PlayerPrefsManager : MonoBehaviour
 {
-    private string startPlayerPrefsName = "Score:";
+    private string _startPlayerPrefsName = "Score:";
+    private string _firstPlayerPrefsScoreName = "Score:1";
 
-    private List<int> randomValuesList = new List<int>();
+    private List<int> _randomValuesList = new List<int>();
 
-    private int amountOfScores;
-    // Start is called before the first frame update
-    void Awake()
-    {
-    }
+    private int _amountOfScores;
 
     public void Init(int amountOfScores)
     {
-        this.amountOfScores = amountOfScores;
+        _amountOfScores = amountOfScores;
         
         InitRandomValues();
 
-        if (!PlayerPrefs.HasKey("Score:1"))
+        if (!PlayerPrefs.HasKey(_firstPlayerPrefsScoreName))
             WriteToPlayerPrefs(null, 10);
     }
 
@@ -28,11 +25,11 @@ public class PlayerPrefsManager : MonoBehaviour
     {
         if (newList == null || newList.Count == 0)
         {
-            newList = randomValuesList;
+            newList = _randomValuesList;
         }
         for (int numberOfScores = 1; numberOfScores <= amountOfScores; numberOfScores++)
         {
-            string prefsName = startPlayerPrefsName + numberOfScores;
+            string prefsName = _startPlayerPrefsName + numberOfScores;
 
             PlayerPrefs.SetInt(prefsName, newList[numberOfScores - 1]);
         }
@@ -42,17 +39,17 @@ public class PlayerPrefsManager : MonoBehaviour
 
     private void InitRandomValues()
     {
-        for (int numberOfScores = 1; numberOfScores <= amountOfScores; numberOfScores++)
+        for (int numberOfScores = 1; numberOfScores <= _amountOfScores; numberOfScores++)
         {
-            randomValuesList.Add(Random.Range(0, 25));
+            _randomValuesList.Add(Random.Range(0, 25));
         }
-        randomValuesList.Sort();
-        randomValuesList.Reverse();
+        _randomValuesList.Sort();
+        _randomValuesList.Reverse();
     }
 
     public void UpdatePlayerPrefs(int newScore, int amountOfScores = 10)
     {
-        if (PlayerPrefs.HasKey("Score:1"))
+        if (PlayerPrefs.HasKey(_firstPlayerPrefsScoreName))
         {
             List<int> tempValuesList = new List<int>();
 
@@ -75,7 +72,7 @@ public class PlayerPrefsManager : MonoBehaviour
 
         for (int numberOfScores = 1; numberOfScores <= amountOfScores; numberOfScores++)
         {
-            string prefsName = startPlayerPrefsName + numberOfScores;
+            string prefsName = _startPlayerPrefsName + numberOfScores;
 
             if (PlayerPrefs.HasKey(prefsName))
             {

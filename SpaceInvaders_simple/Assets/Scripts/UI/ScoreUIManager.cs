@@ -6,12 +6,12 @@ using TMPro;
 public class ScoreUIManager : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI scoreAmount;
+    private TextMeshProUGUI _scoreAmount;
 
     // Start is called before the first frame update
     void Start()
     {
-        scoreAmount.text = "0";
+        _scoreAmount.text = "0";
     }
 
     private void OnEnable()
@@ -26,6 +26,6 @@ public class ScoreUIManager : MonoBehaviour
 
     private void SyncScore(int score)
     {
-        scoreAmount.text = score.ToString();
+        _scoreAmount.text = score.ToString();
     }
 }
