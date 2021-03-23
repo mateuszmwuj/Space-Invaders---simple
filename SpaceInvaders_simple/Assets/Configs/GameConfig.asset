@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: GameConfig
   m_EditorClassIdentifier: 
   amountOfLives: 10
-  amountOfCashedPlayersLaserShots: 5
-  amountOfCashedEnemiesLaserShots: 5
+  amountOfCachedPlayersLaserShots: 10
+  playerBaseShootingIntensity: 2
+  playerBoostShootingIntensity: 0.1
+  amountOfCachedEnemiesLaserShots: 5
   enemyShootTimerMin: 4
   enemyShootTimerMax: 7
   amountOfScores: 10
@@ -22,3 +24,7 @@ MonoBehaviour:
   winTitleTextColor: {r: 0.3764706, g: 0.67058825, b: 0.3647059, a: 1}
   failTitleText: Game Over
   failTitleTextColor: {r: 0.8784314, g: 0.20392157, b: 0.105882354, a: 1}
+  boostLoadingTimer: 40
+  boostUsageTimer: 5
+  boostButtonFadeColor: {r: 0.6039216, g: 0.6039216, b: 0.6039216, a: 1}
+  boostButtonBaseColor: {r: 1, g: 1, b: 1, a: 1}

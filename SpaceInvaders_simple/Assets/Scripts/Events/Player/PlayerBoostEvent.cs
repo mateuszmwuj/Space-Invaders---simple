@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class PlayerBoostEvent : MonoBehaviour
 {
-    public static Action BoostActivate;
-    public static Action BoostDeactivate;
+    public static Action PlayerBoostClick;
+
+    public static Action PlayerBoostEnd;
+        
+    public static Action PlayerBoostReady;
+
+    public static Action StopCounting;
 }

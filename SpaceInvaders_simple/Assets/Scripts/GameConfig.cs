@@ -8,6 +8,9 @@ public class GameConfig : ScriptableObject
     [Header("Players Parameters")]
     public int amountOfLives = 3;
     public int amountOfCachedPlayersLaserShots = 10;
+
+    public float playerBaseShootingIntensity = 2f;
+    public float playerBoostShootingIntensity = 1f;
     
     [Header("EnemyShootShip Parameters")]
     public int amountOfCachedEnemiesLaserShots = 5;
@@ -26,4 +29,12 @@ public class GameConfig : ScriptableObject
     public string failTitleText = "Game Over";
     [SerializeField]
     public Color failTitleTextColor;
+
+    [Header("Boost Player Parameters")]
+    public float boostLoadingTimer;
+    public float boostUsageTimer;
+    [SerializeField]
+    public Color boostButtonFadeColor;
+    [SerializeField]
+    public Color boostButtonBaseColor;
 }

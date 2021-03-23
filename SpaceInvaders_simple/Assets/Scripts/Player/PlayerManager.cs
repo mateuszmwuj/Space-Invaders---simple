@@ -16,6 +16,9 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private GameObject _explosionObject;
 
+    [SerializeField]
+    private GameConfig _gameConfig;
+
     private int _amountOfLives;
 
     protected void OnTriggerEnter2D(Collider2D collision)
@@ -54,6 +57,10 @@ public class PlayerManager : MonoBehaviour
 
         _playerShoot.amountOfCachedLaserShots = amountOfCachedLaserShots;
         _playerShoot.InstantiateLaserShots(amountOfCachedLaserShots);
+        
+        _playerShoot.SetShootingMaxTimer(_gameConfig.playerBaseShootingIntensity);
+        _playerShoot.SetShootingBoostMaxTimer(_gameConfig.playerBoostShootingIntensity);
+        _playerShoot.SetTimerBoostUsageMax(_gameConfig.boostUsageTimer);
 
         _explosionObject.SetActive(false);
     }

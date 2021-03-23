@@ -137,6 +137,7 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 7861395128701239283}
   _boxCollider2D: {fileID: 2640892208324982893}
   _explosionObject: {fileID: 7861395128701239280}
+  _gameConfig: {fileID: 11400000, guid: e068c8bef8425d146ac488ef2fef923b, type: 2}
 --- !u!114 &7861395128701239245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ffa3473c9fbbf0449acf44fcbf876a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rigidbody2D: {fileID: 262032030}
 --- !u!114 &5581987724219960910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +168,7 @@ MonoBehaviour:
   spawnerPrefab: {fileID: 7861395127595545360}
   laserShotsContainer: {fileID: 0}
   laserShotsList: []
-  amountOfCashedLaserShots: 0
+  amountOfCachedLaserShots: 0
   indexOfShooter: -1
 --- !u!61 &2640892208324982893
 BoxCollider2D:

@@ -26,7 +26,7 @@ public class EnemiesContainerManager : MonoBehaviour
 
     [SerializeField]
     private List<EnemyBasicShip> _enemyShips = new List<EnemyBasicShip>();
-    public List<EnemyBasicShip> enemyShips => _enemyShips; 
+    public List<EnemyBasicShip> enemyShips => _enemyShips;
 
     private bool _enableToMove = true;
     public bool enableToMove => _enableToMove;
@@ -39,6 +39,8 @@ public class EnemiesContainerManager : MonoBehaviour
         EnemyMovementTriggerEvents.RightWallEnter += MoveLeftHandler;
         EnemyDiesEvents.EnemyDies += EnemyDies;
         ScoreEvents.PlayerHitByEnemiesLaser += PlayerHitByEnemiesLaser;
+        PlayerWinEvent.PlayerWin += StopAllShips;
+        PlayerDeathEvent.PlayerDeath += StopAllShips;
     }
     private void OnDisable()
     {
@@ -46,6 +48,8 @@ public class EnemiesContainerManager : MonoBehaviour
         EnemyMovementTriggerEvents.RightWallEnter -= MoveLeftHandler;
         EnemyDiesEvents.EnemyDies -= EnemyDies;
         ScoreEvents.PlayerHitByEnemiesLaser -= PlayerHitByEnemiesLaser;
+        PlayerWinEvent.PlayerWin -= StopAllShips;
+        PlayerDeathEvent.PlayerDeath -= StopAllShips;
     }
     // Start is called before the first frame update
     void Start()
@@ -206,5 +210,18 @@ public class EnemiesContainerManager : MonoBehaviour
         }
 
         ScoreEvents.ScoreEnemyAmount(counter);
+    }
+
+    private void StopAllShips()
+    {
+        foreach (EnemyBasicShip enemyShip in enemyShips)
+        {
+            if (enemyShip.gameObject.activeInHierarchy == true)
+            {
+                enemyShip.SetComponentsStateTo(false);
+
+                _enableToMove = false;
+            }
+        }
     }
 }

@@ -673,6 +673,12 @@ PrefabInstance:
       propertyPath: _explosionObject
       value: 
       objectReference: {fileID: 1632341717120857045}
+    - target: {fileID: 7796083536677390126, guid: c08eb59859ada33408006f0b8adeba34,
+        type: 3}
+      propertyPath: _gameConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: e068c8bef8425d146ac488ef2fef923b,
+        type: 2}
     - target: {fileID: 7861395128701239245, guid: c08eb59859ada33408006f0b8adeba34,
         type: 3}
       propertyPath: _rigidbody2D

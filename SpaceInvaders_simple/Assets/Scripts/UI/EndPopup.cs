@@ -12,6 +12,15 @@ public class EndPopup : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _scoreAmountText;
 
+    private void OnEnable()
+    {
+        ScoreEvents.ScoreSync += ScoreSync;
+    }
+    private void OnDisable()
+    {
+        ScoreEvents.ScoreSync -= ScoreSync;        
+    }
+
     public void Init(string titleText, Color titleTextColor, int score)
     {
         this._titleText.text = titleText;
@@ -28,5 +37,10 @@ public class EndPopup : MonoBehaviour
     public void GoToMainMenu()
     {
         SceneManager.LoadScene(0, LoadSceneMode.Single);
+    }
+
+    private void ScoreSync(int score)
+    {
+        this._scoreAmountText.text = score.ToString();
     }
 }

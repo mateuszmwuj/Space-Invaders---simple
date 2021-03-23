@@ -61,7 +61,7 @@ public class EnemyBasicShip : MonoBehaviour
         gameObject.SetActive(false);
     }
     
-    protected void SetComponentsStateTo(bool enable)
+    public void SetComponentsStateTo(bool enable)
     {
         spriteRenderer.enabled = enable;
         boxCollider2D.enabled = enable;

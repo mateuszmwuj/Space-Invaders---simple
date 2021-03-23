@@ -61,6 +61,8 @@ public class GameplayManager : MonoBehaviour
         {
             _playerPrefsManager.UpdatePlayerPrefs(_scoreManager.currentScore, _gameConfig.amountOfScores);
             _playerStateEnd = true;
+
+            PlayerBoostEvent.StopCounting();
         }
     }
     private void PlayerWin()
@@ -75,6 +77,8 @@ public class GameplayManager : MonoBehaviour
         {
             _playerPrefsManager.UpdatePlayerPrefs(_scoreManager.currentScore, _gameConfig.amountOfScores);
             _playerStateEnd = true;
+
+            PlayerBoostEvent.StopCounting();
         }
     }
 }

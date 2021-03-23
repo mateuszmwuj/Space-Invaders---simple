@@ -16,6 +16,7 @@ public class Shoot : MonoBehaviour
 
     protected float timerCounter = 5f;
     protected float timerMax = 2f;
+    protected float timerMaxBase = 2f;
     protected float timerMaxBoost = 1f;
 
     public int amountOfCachedLaserShots = 0;
@@ -56,7 +57,7 @@ public class Shoot : MonoBehaviour
     {
         timerCounter += Time.deltaTime;
 
-        if (timerCounter >= timerMax || timerCounter >= timerMaxBoost)
+        if (timerCounter >= timerMax)
         {
             timerCounter = 0;
 
